@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.venv_clean/
+venv/
+ENV/
+
+# Data and Models
+data/models/*.pkl
+data/models/*.joblib
+reports/*.html
+
+# Environment variables
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
