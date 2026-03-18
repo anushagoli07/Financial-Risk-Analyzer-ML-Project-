@@ -1,7 +1,18 @@
 import pandas as pd
+import pydantic
+import os
+
+# Monkey-patch to fix Evidently + Pydantic v2 compatibility
+if pydantic.__version__.startswith("2"):
+    from pydantic import v1 as pydantic_v1
+    import pydantic.v1.main
+    # This aligns the internal module name that evidently expects
+    pydantic.v1.main.ModelMetaclass.__module__ = "pydantic.main"
+else:
+    import pydantic as pydantic_v1
+
 from evidently.report import Report
 from evidently.metric_preset import DataDriftPreset
-import os
 from .data_pipeline import load_training_data, fetch_reference_dataset
 from .feature_engineering import extract_features
 
